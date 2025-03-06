@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PathFinder</string>
+    <string name="Notes" translatable="false">Заметки</string>
+    <string name="Places" translatable="false">Места</string>
+    <string name="Map" translatable="false">Карта</string>
+    <string name="Weather" translatable="false">Погода</string>
+    <string name="User" translatable="false">Профиль</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

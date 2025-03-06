@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/Notes"
+        android:id="@+id/nav_notes"
+        android:icon="@drawable/ic_notes"
+        />
+
+    <item
+        android:title="@string/Places"
+        android:id="@+id/nav_routes"
+        android:icon="@drawable/ic_places"
+        />
+
+    <item
+        android:title="@string/Map"
+        android:id="@+id/nav_map"
+        android:icon="@drawable/ic_map"
+        />
+
+    <item
+        android:title="@string/Weather"
+        android:id="@+id/nav_weather"
+        android:icon="@drawable/ic_weather"
+         />
+
+    <item
+        android:title="@string/User"
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_user" />
+</menu>

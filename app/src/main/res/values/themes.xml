@@ -1,17 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="SplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowSplashScreenBackground">@color/black</item>
-        <item name="android:windowSplashScreenBrandingImage">@drawable/pathfinder</item>
+        <item name="android:windowSplashScreenBackground">@color/SplashScreen_background_color</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/brand_text_pathfinder</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo</item>
 
+
+    </style>
+
+    <style name="BottomNavigationViewShape" parent="ShapeAppearance.Material3.Corner.None">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item> <!-- Размер скругления -->
+        <item name="cornerFamilyTopLeft">rounded</item> <!-- Скругление только для верхнего левого угла -->
+        <item name="cornerFamilyTopRight">rounded</item> <!-- Скругление только для верхнего правого угла -->
     </style>
 
 
-    <!-- Base application theme. -->
-    <style name="Base.Theme.PathFinder" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.PathFinder" parent="Base.Theme.PathFinder" />
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemActiveIndicatorStyle">@style/Theme.BottomNavigationView.ActiveIndicator</item>
+        <item name="android:background">@drawable/nav_bar_shape</item>"
+
+    </style>
+
+    <style name="Theme.PathFinder" parent="Base.Theme.PathFinder">
+
+    </style>
+
 </resources>
