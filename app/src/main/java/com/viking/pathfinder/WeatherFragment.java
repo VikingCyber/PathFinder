@@ -18,6 +18,6 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("FragmentLifecycle", "onCreateView: " + this.getClass().getSimpleName());
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        return inflater.inflate(R.layout.fragment_weather, container, false);
     }
 }

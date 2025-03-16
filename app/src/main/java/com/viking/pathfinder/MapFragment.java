@@ -17,7 +17,6 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e("Fragment", "View is null during inflation");
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 }

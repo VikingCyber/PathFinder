@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class UserFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    public UserFragment() {
+    public ProfileFragment() {
         // Пустой публичный конструктор
     }
 
@@ -18,6 +18,6 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("FragmentLifecycle", "onCreateView: " + this.getClass().getSimpleName());
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }
