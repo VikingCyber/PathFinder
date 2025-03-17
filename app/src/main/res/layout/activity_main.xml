@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/statusBar_color">
+    tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
@@ -27,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"
-        style="@style/Widget.App.BottomNavigationView"/>
+        style="@style/NavBarStyle"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

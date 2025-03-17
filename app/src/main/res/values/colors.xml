@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="SplashScreen_background_color">#302C2A</color>
     <color name='NavBackground_color'>#E1A87A</color>
-    <color name="statusBar_color">#E1A87A</color>
+    <color name="StatusBar_color">#66E1A87A</color>
+    <color name="NavBarTextIcon_color">#484C52</color>
 </resources>
