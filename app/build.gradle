@@ -30,7 +30,10 @@ android {
 }
 
 dependencies {
-
+    implementation libs.room.runtime
+    annotationProcessor libs.room.compiler
+    implementation libs.lifecycle.livedata
+    implementation libs.lifecycle.viewmodel
     implementation libs.core.splashscreen
     implementation libs.appcompat
     implementation libs.material

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:title="Заметка"
+        android:navigationIcon="@drawable/ic_arrow_back"
+        android:contentDescription="Назад">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:paddingEnd="16dp">
+
+            <ImageButton
+                android:id="@+id/buttonSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_save"
+                android:background="@android:color/transparent"
+                android:contentDescription="Сохранить"
+                android:scaleType="fitCenter"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                 />
+            <ImageButton
+                android:id="@+id/buttonDelete"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_delete"
+                android:background="@android:color/transparent"
+                android:contentDescription="Удалить"
+                android:scaleType="fitCenter"
+                android:layout_toEndOf="@id/buttonSave" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Заголовок" />
+
+    <EditText
+        android:id="@+id/editTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:hint="Текст заметки"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:overScrollMode="always"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

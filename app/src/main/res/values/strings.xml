@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">PathFinder</string>
-    <string name="Notes" >Заметки</string>
+    <string name="Notes">Заметки</string>
     <string name="Places">Места</string>
     <string name="Map">Карта</string>
-    <string name="Weather" >Погода</string>
-    <string name="User" >Профиль</string>
+    <string name="Weather">Погода</string>
+    <string name="User">Профиль</string>
 </resources>

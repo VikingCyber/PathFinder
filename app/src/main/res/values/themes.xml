@@ -4,7 +4,7 @@
         <item name="android:windowSplashScreenBrandingImage">@drawable/brand_text_pathfinder</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/StatusBar_color</item>"
+        <item name="android:statusBarColor">@color/StatusBar_color</item>
 
     </style>
 
@@ -24,11 +24,12 @@
         <item name="android:background">@drawable/nav_bar_shape</item>
         <item name="shapeAppearance">@style/BottomNavigationViewShape</item>
         <item name="itemIconTint">@color/NavBarTextIcon_color</item>
-        <item name="itemTextColor">@color/NavBarTextIcon_color</item>"
+        <item name="itemTextColor">@color/NavBarTextIcon_color</item>
     </style>
 
-    <style name="Theme.PathFinder" parent="Base.Theme.PathFinder">
-        <item name="android:background">@android:color/darker_gray</item>
+    <style name="Theme.PathFinder" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:colorBackground">@android:color/holo_purple</item> <!-- для View -->
     </style>
+
 
 </resources>
