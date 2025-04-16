@@ -1,17 +1,16 @@
 package com.viking.pathfinder;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.viking.pathfinder.model.Note;
@@ -36,6 +35,12 @@ public class AddEditNoteActivity extends AppCompatActivity {
         ImageButton saveButton = findViewById(R.id.buttonSave);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        Drawable navIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back);
+        if (navIcon != null) {
+            int color = ContextCompat.getColor(this, R.color.NavBarTextIcon_color);
+            navIcon.setTint(color);
+            toolbar.setNavigationIcon(navIcon);
+        }
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
+    style="@style/MyCardStyle"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="8dp"
     android:layout_width="match_parent"
@@ -13,14 +14,14 @@
         android:layout_height="wrap_content">
 
         <TextView
+            style="@style/NoteTitleText"
             android:id="@+id/textViewTitle"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Заголовок" />
 
         <TextView
+            style="@style/NoteContentText"
             android:id="@+id/textViewContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

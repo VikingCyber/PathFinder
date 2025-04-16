@@ -3,7 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="SplashScreen_background_color">#302C2A</color>
-    <color name='NavBackground_color'>#E1A87A</color>
-    <color name="StatusBar_color">#66E1A87A</color>
+    <color name="NavBackground_color">#E1A87A</color>
+    <color name="AddNote_color">#E1A87A</color>
+    <color name="StatusBar_color">#B3E1A87A</color>
     <color name="NavBarTextIcon_color">#484C52</color>
+    <color name="AppBackgroundDefault">#FFFFFF</color>
+    <color name="card_background">#F3F5F8</color>
 </resources>

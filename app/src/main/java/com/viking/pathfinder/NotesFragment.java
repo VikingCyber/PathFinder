@@ -11,15 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.Intent;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.viking.pathfinder.adapter.NoteAdapter;
-import com.viking.pathfinder.model.Note;
 import com.viking.pathfinder.viewmodel.NoteViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class NotesFragment extends Fragment {
 
@@ -38,16 +35,14 @@ public class NotesFragment extends Fragment {
             intent.putExtra("note", note);
             startActivity(intent);
         },
-        note ->{
-            new AlertDialog.Builder(getContext())
-                    .setTitle("Удалить заметку")
-                    .setMessage("Вы уверены, что хотите удалить эту заметку?")
-                    .setPositiveButton("Удалить", (dialog, which) ->{
-                        NoteViewModel viewModel = new ViewModelProvider(this)
-                                .get(NoteViewModel.class);
-                        viewModel.delete(note);
-                    }).setNegativeButton("Отмена", null).show();
-        });
+        note -> new AlertDialog.Builder(getContext())
+                .setTitle("Удалить заметку")
+                .setMessage("Вы уверены, что хотите удалить эту заметку?")
+                .setPositiveButton("Удалить", (dialog, which) ->{
+                    NoteViewModel viewModel = new ViewModelProvider(this)
+                            .get(NoteViewModel.class);
+                    viewModel.delete(note);
+                }).setNegativeButton("Отмена", null).show());
 
         recyclerView.setAdapter(noteAdapter);
 
