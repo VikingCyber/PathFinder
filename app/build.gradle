@@ -6,6 +6,9 @@ plugins {
 android {
     namespace 'com.viking.pathfinder'
     compileSdk 35
+    buildFeatures {
+        buildConfig true
+    }
 
     defaultConfig {
         applicationId "com.viking.pathfinder"
@@ -13,7 +16,8 @@ android {
         targetSdk 35
         versionCode 1
         versionName "1.0"
-
+        buildConfigField "String", "WEATHER_API_KEY", "\"${project.WEATHER_API_KEY}\""
+        buildConfigField "String", "YANDEX_MAP_API_KEY", "\"${project.YANDEX_MAP_API_KEY}\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +34,11 @@ android {
 }
 
 dependencies {
+    implementation libs.maps.mobile.v4140lite
+    implementation libs.glide
+    annotationProcessor libs.compiler
+    implementation libs.retrofit
+    implementation libs.converter.gson
     implementation libs.room.runtime
     annotationProcessor libs.room.compiler
     implementation libs.lifecycle.livedata

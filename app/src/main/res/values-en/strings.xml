@@ -6,4 +6,5 @@
     <string name="Weather">Weather</string>
     <string name="Places">Places</string>
     <string name="User">Profile</string>
+    <string name="temperature_format">%1$s°C</string>
 </resources>

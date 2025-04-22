@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Это MapFragment"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:gravity="center"/>-->
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <!-- Map View -->
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- Display Yandex MapKit version -->
+    <LinearLayout
+        android:id="@+id/mapkit_version"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/map"
-        android:contentDescription="Карта"/>
+        android:padding="10dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/mapkit_version_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yandex MapKit Version"
+            android:textSize="14sp"/>
+    </LinearLayout>
+</LinearLayout>

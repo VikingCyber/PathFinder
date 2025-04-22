@@ -5,4 +5,7 @@
     <string name="Map">Карта</string>
     <string name="Weather">Погода</string>
     <string name="User">Профиль</string>
+    <string name="temperature_format">%.1f°C</string>
+
+
 </resources>
