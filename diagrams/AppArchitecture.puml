@@ -1,0 +1,72 @@
+@startuml AppArchitecture
+
+' === Notes Module ===
+package "Notes Module" {
+  component NotesFragment
+  component AddEditNoteActivity
+  component NoteViewModel
+  component NoteRepository
+  database NoteDatabase
+
+  NotesFragment --> NoteViewModel
+  AddEditNoteActivity --> NoteViewModel
+  NoteViewModel --> NoteRepository
+  NoteRepository --> NoteDatabase
+}
+
+' === Weather Module ===
+package "Weather Module" {
+  component WeatherFragment
+  component WeatherViewModel
+  component WeatherRepository
+  database WeatherAPI
+
+  WeatherFragment --> WeatherViewModel
+  WeatherViewModel --> WeatherRepository
+  WeatherRepository --> WeatherAPI
+}
+
+' === Map Module ===
+package "Map Module" {
+  component MapFragment
+  component MapViewModel
+  database MapData
+
+  MapFragment --> MapViewModel
+  MapViewModel --> MapData
+}
+
+' === Profile Module ===
+package "Profile Module" {
+  component ProfileFragment
+  component ProfileViewModel
+  component ProfileRepository
+  database UserPreferences
+
+  ProfileFragment --> ProfileViewModel
+  ProfileViewModel --> ProfileRepository
+  ProfileRepository --> UserPreferences
+}
+
+' === Routes Module ===
+package "Routes Module" {
+  component RouteFragment
+  component RouteViewModel
+  component RouteRepository
+  database RouteDatabase
+
+  RouteFragment --> RouteViewModel
+  RouteViewModel --> RouteRepository
+  RouteRepository --> RouteDatabase
+}
+
+' === MainActivity Navigation ===
+component MainActivity
+
+MainActivity --> NotesFragment
+MainActivity --> WeatherFragment
+MainActivity --> MapFragment
+MainActivity --> ProfileFragment
+MainActivity --> RouteFragment
+
+@enduml

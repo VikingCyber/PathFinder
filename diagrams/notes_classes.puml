@@ -1,0 +1,78 @@
+@startuml
+' Модель
+class Note {
+  +int id
+  +String title
+  +String content
+}
+
+' DAO (скрыт в коде, но логично существует)
+class NoteDao {
+  +LiveData<List<Note>> getAllNotes()
+  +void insert(Note)
+  +void update(Note)
+  +void delete(Note)
+}
+
+' БД
+class NoteDatabase {
+  +static NoteDatabase getInstance(Application)
+  +NoteDao noteDao()
+}
+
+' Репозиторий
+class NoteRepository {
+  -NoteDao noteDao
+  -LiveData<List<Note>> allNotes
+  +LiveData<List<Note>> getAllNotes()
+  +void insert(Note)
+  +void update(Note)
+  +void delete(Note)
+}
+
+' ViewModel
+class NoteViewModel {
+  -NoteRepository repository
+  -LiveData<List<Note>> allNotes
+  +LiveData<List<Note>> getAllNotes()
+  +void insert(Note)
+  +void update(Note)
+  +void delete(Note)
+}
+
+' View (Fragment)
+class NotesFragment {
+  +onCreateView()
+}
+
+' Адаптер для RecyclerView
+class NoteAdapter {
+  - noteList: List<Note>
+  - listener: OnNoteClickListener
+  - longClickListener: OnNoteLongClickListener
+  + setNotes(notes: List<Note>): void
+  + onBindViewHolder(holder: NoteViewHolder, position: int): void
+  + onNoteClick(note: Note): void
+  + onNoteLongClick(note: Note): void
+}
+
+interface OnNoteClickListener {
+  + onNoteClick(note: Note): void
+}
+
+interface OnNoteLongClickListener {
+  + onNoteLongClick(note: Note): void
+}
+
+' Связи
+NoteDatabase --> NoteDao
+NoteRepository --> NoteDao
+NoteRepository --> Note
+NoteViewModel --> NoteRepository
+NotesFragment --> NoteViewModel
+NotesFragment --> NoteAdapter
+NoteAdapter --> Note
+NoteAdapter ..|> OnNoteClickListener
+NoteAdapter ..|> OnNoteLongClickListener
+
+@enduml

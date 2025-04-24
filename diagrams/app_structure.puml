@@ -1,0 +1,127 @@
+@startuml AppStructure
+
+' ================= Notes Module ==================
+package "Notes Module" {
+
+  NotesFragment -[hidden]-> AddEditNoteActivity
+  NotesFragment -[hidden]-> NoteViewModel
+  NoteAdapter -[hidden]-> Note
+
+
+  class Note {
+    +int id
+    +String title
+    +String content
+  }
+
+  interface NoteDao {
+    +LiveData<List<Note>> getAllNotes()
+    +void insert(Note)
+    +void update(Note)
+    +void delete(Note)
+  }
+
+  class NoteDatabase {
+    +static NoteDatabase getInstance(Application)
+    +NoteDao noteDao()
+  }
+
+  class NoteRepository {
+    -NoteDao noteDao
+    -LiveData<List<Note>> allNotes
+    +LiveData<List<Note>> getAllNotes()
+    +void insert(Note)
+    +void update(Note)
+    +void delete(Note)
+  }
+
+  class NoteViewModel {
+    -NoteRepository repository
+    -LiveData<List<Note>> allNotes
+    +LiveData<List<Note>> getAllNotes()
+    +void insert(Note)
+    +void update(Note)
+    +void delete(Note)
+  }
+
+  class NoteAdapter {
+    -List<Note> noteList
+    +void setNotes(List<Note>)
+  }
+
+  class NotesFragment
+  class AddEditNoteActivity {
+    -EditText editTitle
+    -EditText editContent
+    -NoteViewModel noteViewModel
+    -Note currentNote
+    -void saveNote()
+  }
+}
+
+' ================= Weather Module ==================
+package "Weather Module" {
+  class WeatherResponse
+  class WeatherRepository
+  class WeatherViewModel
+  class WeatherFragment
+}
+
+' ================= Map Module ==================
+package "Map Module" {
+  class MapPoint {
+    +String title
+    +String description
+    +double latitude
+    +double longitude
+  }
+
+  class MapViewModel
+  class MapFragment
+}
+
+' ================= Routes Module ==================
+package "Routes Module" {
+    class RouteFragment
+}
+
+' ================= Profile Module ==================
+package "Profile Module" {
+    class ProfileFragment
+}
+
+' ================= MainActivity ==================
+class MainActivity
+
+
+' ================= Connections ==================
+
+' MainActivity navigation
+MainActivity --> NotesFragment
+MainActivity --> WeatherFragment
+MainActivity --> MapFragment
+MainActivity --> "Routes Module"
+MainActivity --> "Profile Module"
+' Notes Module relations
+NotesFragment --> NoteViewModel : Uses
+NotesFragment --> NoteAdapter : Uses
+NotesFragment --> AddEditNoteActivity : Navigation
+AddEditNoteActivity --> NoteViewModel : Uses
+AddEditNoteActivity --> Note : Owns
+NoteViewModel --> NoteRepository : Uses
+NoteRepository --> NoteDao : Uses
+NoteRepository --> NoteDatabase : Uses
+NoteDatabase --> NoteDao : Contains
+NoteAdapter --> Note : Uses
+NoteViewModel --> Note : uses
+
+' Weather Module relations
+WeatherFragment --> WeatherViewModel
+WeatherViewModel --> WeatherRepository
+WeatherRepository --> WeatherResponse
+
+' Map Module relations
+MapFragment --> MapViewModel
+MapViewModel --> MapPoint : uses
+
+@enduml

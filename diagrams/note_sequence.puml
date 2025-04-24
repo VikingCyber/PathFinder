@@ -1,0 +1,18 @@
+@startuml Sequence_DeleteNote
+
+actor User
+
+User -> NotesFragment : нажатие на кнопку "Удалить"
+NotesFragment -> AlertDialog : показываем диалог с подтверждением
+AlertDialog -> User : запрос на подтверждение действия
+User -> AlertDialog : подтверждение
+AlertDialog -> NoteViewModel : вызов метода delete(note)
+NoteViewModel -> NoteRepository : передача запроса на удаление заметки
+NoteRepository -> NoteDao : вызов метода delete
+NoteDao -> NoteDatabase : выполнение запроса к базе данных
+NoteDatabase -> NoteDao : завершение операции
+NoteRepository -> NoteViewModel : подтверждение об успешном удалении
+NoteViewModel -> NotesFragment : обновление UI
+NotesFragment -> NoteAdapter : обновление списка заметок
+
+@enduml
