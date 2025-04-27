@@ -7,6 +7,9 @@ import androidx.room.RoomDatabase;
 
 import com.viking.pathfinder.model.Note;
 
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SupportFactory;
+
 @Database(entities = {Note.class}, version = 1, exportSchema = false)
 public abstract class NoteDatabase extends RoomDatabase {
     public abstract NoteDao noteDao();
@@ -17,8 +20,11 @@ public abstract class NoteDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (NoteDatabase.class) {
                 if (INSTANCE == null) {
+                    byte[] passphrase = SQLiteDatabase.getBytes("super-secret".toCharArray());
+                    SupportFactory factory = new SupportFactory(passphrase);
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             NoteDatabase.class, "note_database")
+                            .openHelperFactory(factory)
                             .build();
                 }
             }

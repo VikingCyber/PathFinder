@@ -40,6 +40,7 @@ dependencies {
     implementation libs.retrofit
     implementation libs.converter.gson
     implementation libs.room.runtime
+    implementation libs.android.database.sqlcipher
     annotationProcessor libs.room.compiler
     implementation libs.lifecycle.livedata
     implementation libs.lifecycle.viewmodel

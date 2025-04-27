@@ -1,0 +1,20 @@
+@startuml ContextMap
+
+title Context Map for Hiking App (DDD + MVVM)
+
+' Определяем контексты и их принадлежность к поддоменам
+rectangle "Map\n(Core Domain)" as Map
+rectangle "Routes\n(Supporting Subdomain)" as Routes
+rectangle "Weather\n(External System)" as Weather
+rectangle "Notes\n(Supporting Subdomain)" as Notes
+rectangle "Profile\n(Supporting Subdomain)" as Profile
+
+' Связи между контекстами с указанием типа связи по DDD
+Map --> Routes : Customer-Supplier
+Map --> Weather : Anti-Corruption Layer
+Map ..> Notes : Separate Ways
+Map ..> Profile : Separate Ways
+Notes ..> Profile : Separate Ways
+Routes ..> Profile : Separate Ways
+
+@enduml
