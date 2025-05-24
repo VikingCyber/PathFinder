@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-        private void setCurrentFragment(Fragment fragment) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, fragment)
-                    .addToBackStack(null)
-                    .commit();
-        }
+    private void setCurrentFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }

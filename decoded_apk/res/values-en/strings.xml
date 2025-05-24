@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Map">Map</string>
+    <string name="Notes">Notes</string>
+    <string name="Places">Places</string>
+    <string name="User">Profile</string>
+    <string name="Weather">Weather</string>
+    <string name="app_name">PathFinder</string>
+    <string name="temperature_format">%1$s°C</string>
+</resources>

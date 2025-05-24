@@ -1,0 +1,49 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container(app, "MobileApp", "Android", "Главный контейнер приложения")
+
+Component(notesFragment, "NotesFragment", "View", "Фрагмент со списком заметок")
+Component(weatherFragment, "WeatherFragment", "View", "Фрагмент с погодой")
+Component(mapFragment, "MapFragment", "View", "Фрагмент с картой")
+Component(settingsFragment, "SettingsFragment", "View", "Фрагмент настроек")
+Component(profileFragment, "ProfileFragment", "View", "Фрагмент профиля")
+
+Component(notesVM, "NoteViewModel", "ViewModel", "Обрабатывает бизнес-логику и управляет данными")
+Component(weatherVM, "WeatherViewModel", "ViewModel", "Обрабатывает бизнес-логику и управляет данными")
+Component(mapVM, "MapViewModel", "ViewModel", "Обрабатывает бизнес-логику и управляет данными")
+Component(settingsVM, "SettingsViewModel", "ViewModel", "Обрабатывает бизнес-логику и управляет данными")
+Component(profileVM, "ProfileViewModel", "ViewModel", "Обрабатывает бизнес-логику и управляет данными")
+
+Component(notesRepo, "NoteRepository", "Model", "Работа с заметками и БД")
+Component(weatherRepo, "WeatherRepository", "Model", "Работа с погодными данными")
+Component(mapRepo, "MapRepository", "Model", "Работа с геоданными / API")
+Component(settingsRepo, "SettingsRepository", "Model", "Работа с настройками")
+Component(profileRepo, "ProfileRepository", "Model", "Работа с данными пользователя")
+
+' Connections от MobileApp к каждому фрагменту
+Rel(app, notesFragment, "отображает")
+Rel(app, weatherFragment, "отображает")
+Rel(app, mapFragment, "отображает")
+Rel(app, settingsFragment, "отображает")
+Rel(app, profileFragment, "отображает")
+
+' View → ViewModel
+Rel(notesFragment, notesVM, "подписывается на LiveData и вызывает методы")
+Rel(weatherFragment, weatherVM, "подписывается на LiveData и вызывает методы")
+Rel(mapFragment, mapVM, "подписывается на LiveData и вызывает методы")
+Rel(settingsFragment, settingsVM, "подписывается на LiveData и вызывает методы")
+Rel(profileFragment, profileVM, "подписывается на LiveData и вызывает методы")
+
+' ViewModel → Repository (Model)
+Rel(notesVM, notesRepo, "получает/изменяет данные")
+Rel(weatherVM, weatherRepo, "получает/изменяет данные")
+Rel(mapVM, mapRepo, "получает/изменяет данные")
+Rel(settingsVM, settingsRepo, "получает/изменяет данные")
+Rel(profileVM, profileRepo, "получает/изменяет данные")
+
+@enduml
+uml

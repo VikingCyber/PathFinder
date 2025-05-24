@@ -1,0 +1,101 @@
+@startuml
+
+package "Model" {
+  class Note {
+    - id: int
+    - title: String
+    - content: String
+  }
+
+  interface NoteDao {
+    + getAllNotes(): LiveData<List<Note>>
+    + delete(note: Note): void
+    + insert(note: Note): void
+    + update(note: Note): void
+  }
+
+  interface INoteRepository {
+    + getAllNotes(): LiveData<List<Note>>
+    + delete(note: Note): void
+    + insert(note: Note): void
+    + update(note: Note): void
+  }
+
+  class NoteRepository {
+    - NoteDao noteDao
+    - LiveData<List<Note>> allNotes
+    - ExecutorService executor
+    + getAllNotes(): LiveData<List<Note>>
+    + delete(note: Note): void
+    + insert(note: Note): void
+    + update(note: Note): void
+  }
+  NoteRepository ..|> INoteRepository
+}
+
+package "ViewModel" {
+  class NoteViewModel {
+    - INoteRepository repository
+    - LiveData<List<Note>> allNotes
+    + getAllNotes(): LiveData<List<Note>>
+    + deleteNote(note: Note): void
+    + saveNote(title: String, content: String, existingNote: Note): void
+    + getOperationCompleted(): LiveData<Boolean>
+  }
+
+  class NoteViewModelFactory {
+    + create(): NoteViewModel
+  }
+}
+
+package "View" {
+  class MainActivity {
+    # onCreate(Bundle savedInstanceState): void
+    - setCurrentFragment(Fragment fragment): void
+  }
+
+  class NotesFragment {
+    - NoteViewModel noteViewModel
+    + onCreateView(): View
+  }
+
+  class AddEditNoteActivity {
+    - EditText editTitle
+    - EditText editContent
+    - NoteViewModel noteViewModel
+    - Note currentNote
+    + onCreate(Bundle): void
+    + setupToolbar(): void
+  }
+
+  class NoteAdapter {
+    + onCreateViewHolder(...)
+    + onBindViewHolder(...)
+  }
+
+  class NoteViewHolder {
+    + bind(note, clickListener, longClickListener): void
+  }
+
+  interface OnNoteClickListener {
+    + onNoteClick(note: Note): void
+  }
+
+  interface OnNoteLongClickListener {
+    + onNoteLongClick(note: Note): void
+  }
+}
+
+' Связи между слоями
+MainActivity -right-> NotesFragment
+NoteViewModel --> INoteRepository
+NoteRepository --> NoteDao
+NotesFragment --> NoteViewModel
+AddEditNoteActivity --> NoteViewModel
+NotesFragment --> NoteAdapter
+NotesFragment --> AddEditNoteActivity
+NoteAdapter *-- NoteViewHolder
+NoteViewHolder --> OnNoteClickListener
+NoteViewHolder --> OnNoteLongClickListener
+NoteViewModelFactory --> NoteViewModel
+@enduml

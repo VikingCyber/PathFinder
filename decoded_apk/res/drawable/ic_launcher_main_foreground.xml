@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="108.0dip" android:width="108.0dip" android:viewportWidth="220.0" android:viewportHeight="220.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <group android:scaleX="1.1" android:scaleY="1.1" android:translateX="-11.0" android:translateY="-11.0">
+        <group android:translateX="50.0" android:translateY="50.0">
+            <path android:fillColor="#ffe1a87a" android:pathData="M60,120C93.14,120 120,93.14 120,60C120,26.86 93.14,0 60,0C26.86,0 0,26.86 0,60C0,93.14 26.86,120 60,120Z" />
+            <path android:fillColor="#fff5e9da" android:pathData="M60,108.83C76.78,108.83 90.38,104.12 90.38,98.32C90.38,92.51 76.78,87.8 60,87.8C43.22,87.8 29.62,92.51 29.62,98.32C29.62,104.12 43.22,108.83 60,108.83Z" />
+            <path android:fillColor="@drawable/$ic_launcher_main_foreground__0" android:pathData="M60,18.26C43.7,18.26 30.5,31.46 30.5,47.76C30.5,64.06 57.57,90.17 60,101.74C62.43,90.17 89.5,64.06 89.5,47.76C89.5,31.46 76.3,18.26 60,18.26Z" />
+            <path android:fillColor="#fff5e9da" android:pathData="M60,58.42C65.88,58.42 70.65,53.65 70.65,47.76C70.65,41.88 65.88,37.11 60,37.11C54.12,37.11 49.35,41.88 49.35,47.76C49.35,53.65 54.12,58.42 60,58.42Z" />
+        </group>
+    </group>
+</vector>

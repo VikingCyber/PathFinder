@@ -51,16 +51,11 @@
         <item name="android:textColorHint">#CBD1D6</item>
     </style>
 
-
-
-
-
     <!-- Главный стиль приложения -->
     <style name="Theme.PathFinder" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:colorBackground">@color/AppBackgroundDefault</item>
         <item name="materialCardViewStyle">@style/MyCardStyle</item>
         <item name="android:statusBarColor">@color/StatusBar_color</item>
-
     </style>
 
 

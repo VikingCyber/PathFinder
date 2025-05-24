@@ -1,0 +1,55 @@
+@startuml NoteAdapter_UML
+
+' Интерфейсы
+interface OnNoteClickListener {
+  + onNoteClick(Note note)
+}
+
+interface OnNoteLongClickListener {
+  + onNoteLongClick(Note note)
+}
+
+' Классы
+class Note {
+  + id: int
+  + title: String
+  + content: String
+}
+
+class NoteAdapter {
+  - noteList: List<Note>
+  - listener: OnNoteClickListener
+  - longClickListener: OnNoteLongClickListener
+  + setNotes(List<Note> notes)
+  + onCreateViewHolder()
+  + onBindViewHolder()
+  + getItemCount()
+}
+
+class NoteViewHolder {
+  - titleTextView: TextView
+  - contentTextView: TextView
+  + NoteViewHolder(View itemView)
+}
+
+' RecyclerView (системный класс)
+class RecyclerView {
+  + setAdapter(Adapter adapter)
+  + setLayoutManager(LayoutManager manager)
+}
+
+' Связи
+NoteAdapter "1" *-- "0..*" Note : Адаптирует
+NoteAdapter --> OnNoteClickListener : Использует
+NoteAdapter --> OnNoteLongClickListener : Использует
+NoteAdapter --> NoteViewHolder : Создает
+RecyclerView --> NoteAdapter : Использует
+
+' Примечания
+note top of NoteAdapter
+  Паттерн "Адаптер":
+  1. Адаптирует List<Note> к RecyclerView
+  2. Реализует стандартный Adapter<NoteViewHolder>
+end note
+
+@enduml

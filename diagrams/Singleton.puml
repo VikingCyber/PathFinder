@@ -1,0 +1,20 @@
+@startuml NoteDatabase_Singleton
+class NoteDatabase {
+  - static volatile INSTANCE: NoteDatabase
+  + static getInstance(Context): NoteDatabase
+  + noteDao(): NoteDao
+}
+
+class NoteDao {
+  + insert(Note)
+  + getAllNotes(): LiveData<List<Note>>
+}
+
+NoteDatabase --> NoteDao : Создает
+
+note left of NoteDatabase
+  Паттерн "Одиночка":
+  1. Контроль создания экземпляра
+  2. Глобальная точка доступа
+end note
+@endumlnduml

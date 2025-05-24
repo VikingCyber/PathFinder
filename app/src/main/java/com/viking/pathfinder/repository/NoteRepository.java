@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class NoteRepository {
+public class NoteRepository implements INoteRepository{
 
     private final NoteDao noteDao;
     private final LiveData<List<Note>> allNotes;
@@ -24,18 +24,22 @@ public class NoteRepository {
         allNotes = noteDao.getAllNotes();
     }
 
+    @Override
     public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }
 
+    @Override
     public void insert(Note note) {
         executor.execute(() -> noteDao.insert(note));
     }
 
+    @Override
     public void update(Note note) {
         executor.execute(() -> noteDao.update(note));
     }
 
+    @Override
     public void delete(Note note) {
         executor.execute(() -> noteDao.delete(note));
     }

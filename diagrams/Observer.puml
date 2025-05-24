@@ -1,0 +1,79 @@
+@startuml ObserverPatternInNotes
+
+' Цвета и стили
+skinparam class {
+    BackgroundColor #F9F9F9
+    ArrowColor #444444
+    BorderColor #888888
+}
+
+' Интерфейсы
+interface Observer <<interface>> {
+    + onChanged(T): void
+}
+
+' Классы
+class LiveData<List<Note>> {
+    - observers: List<Observer>
+    + observe(LifecycleOwner, Observer<List<Note>>): void
+    + setValue(List<Note>): void
+    + postValue(List<Note>): void
+}
+
+class NoteViewModel {
+    - repository: NoteRepository
+    - allNotes: LiveData<List<Note>>
+    + getAllNotes(): LiveData<List<Note>>
+}
+
+class NotesFragment {
+    - adapter: NoteAdapter
+    - viewModel: NoteViewModel
+    + onCreateView()
+}
+
+class NoteAdapter {
+    - noteList: List<Note>
+    + setNotes(List<Note>): void
+}
+
+' Внешние компоненты
+class NoteRepository {
+    + getAllNotes(): LiveData<List<Note>>
+}
+
+class Note {
+    + id: int
+    + title: String
+    + content: String
+}
+
+' Связи
+LiveData -[hidden]--> Observer
+LiveData  <-- Observer : Уведомляет
+
+NoteViewModel o-- LiveData : Содержит
+NoteViewModel --> NoteRepository : Запрашивает данные
+
+NotesFragment --> NoteViewModel : Подписывается
+NotesFragment --> NoteAdapter : Обновляет
+
+NoteAdapter ..> Note : Отображает
+NoteRepository ..> Note : Возвращает
+
+' Примечания
+note top of LiveData
+  <b>Реализация Observer в Android:</b>
+  1. LiveData - Subject
+  2. NoteAdapter - Observer (через анонимный класс)
+  3. Автоматическая отписка при destroy
+end note
+
+note right of NoteViewModel
+  <b>Цепочка обновлений:</b>
+  БД → Repository → LiveData
+  → ViewModel → Fragment
+  → Adapter → RecyclerView
+end note
+
+@enduml

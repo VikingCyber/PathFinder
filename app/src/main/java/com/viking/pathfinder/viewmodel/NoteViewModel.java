@@ -2,38 +2,51 @@ package com.viking.pathfinder.viewmodel;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.viking.pathfinder.model.Note;
-import com.viking.pathfinder.repository.NoteRepository;
+import com.viking.pathfinder.repository.INoteRepository;
 
 import java.util.List;
 
 public class NoteViewModel extends AndroidViewModel {
 
-    private final NoteRepository repository;
+    private final INoteRepository repository;
     private final LiveData<List<Note>> allNotes;
 
-    public NoteViewModel(Application application) {
+    private final MutableLiveData<Boolean> operationCompleted = new MutableLiveData<>();
+
+    public NoteViewModel(@NonNull Application application, INoteRepository repository) {
         super(application);
-        repository = new NoteRepository(application);
-        allNotes = repository.getAllNotes();
+        this.repository = repository;
+        this.allNotes = repository.getAllNotes();
     }
 
     public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }
 
-    public void insert(Note note) {
-        repository.insert(note);
+    public LiveData<Boolean> getOperationCompleted() {
+        return operationCompleted;
     }
 
-    public void update(Note note) {
-        repository.update(note);
+    public void saveNote(String title, String content, Note existingNote) {
+        if (existingNote != null) {
+            existingNote.title = title;
+            existingNote.content = content;
+            repository.update(existingNote);
+        } else {
+            Note newNote = new Note(title, content);
+            repository.insert(newNote);
+        }
+        operationCompleted.setValue(true);
     }
 
-    public void delete(Note note) {
+    public void deleteNote(Note note) {
         repository.delete(note);
+        operationCompleted.setValue(true);
     }
 }

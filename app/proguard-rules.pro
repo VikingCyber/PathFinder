@@ -1,21 +1,39 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# Сохраняем ViewModel и Repository, чтобы не сломать связь через reflection или фреймворк
+-keep class com.viking.pathfinder.viewmodel.** { *; }
+-keep class com.viking.pathfinder.repository.** { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Если используешь AndroidX Lifecycle (LiveData, ViewModel), надо сохранить их методы
+-keepclassmembers class * extends androidx.lifecycle.ViewModel {
+    <init>(...);
+}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Сохраняем модели данных (Note), чтобы сериализация/десериализация работала корректно
+-keepclassmembers class com.viking.pathfinder.model.Note {
+    <fields>;
+    <methods>;
+}
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Если используешь Gson или другой JSON парсер, сохранить поля моделей
+-keep class com.google.gson.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+
+# Убираем предупреждения для популярных библиотек, если есть
+-dontwarn okhttp3.**
+-dontwarn retrofit2.**
+
+# Общие настройки (можно добавить, если не хочешь дебаг-инфо)
+#-dontusemixedcaseclassnames
+#-dontskipnonpubliclibraryclasses
+#-dontpreverify
+
+# Минимизируем размер APK, убирая неиспользуемый код
+# Уже включено в R8 по умолчанию, но можно явно указать
+#-optimizations !code/simplification/arithmetic
+
+# Убрать логирование (опционально)
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** v(...);
+}
+-renamesourcefileattribute SourceFile
